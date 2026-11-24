@@ -508,7 +508,8 @@ class Plotter:
             x, y = self._get_interactive_landmark_loc(i)
             status = self._get_interactive_landmark_status(snapshot.state, i)
             belief = InteractiveLandmarkBelief.KNOWN
-            for st in snapshot.potential_states:
+            # Only belief traces know the potential states.
+            for st in getattr(snapshot, 'potential_states', []):
                 if status != self._get_interactive_landmark_status(st, i):
                     belief = InteractiveLandmarkBelief.QUESTIONMARK
                     break
