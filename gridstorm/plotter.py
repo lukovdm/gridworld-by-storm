@@ -211,7 +211,7 @@ class Plotter:
                 color = 'darkgreen'
             elif status == InteractiveLandmarkStatus.NEGATIVE:
                 color = 'darkred'
-            adv = patches.RegularPolygon((xloc + 0.5, yloc + 0.5), 7, 0.35, linewidth=1, edgecolor=color, facecolor=color)
+            adv = patches.RegularPolygon((xloc + 0.5, yloc + 0.5), 7, radius=0.35, linewidth=1, edgecolor=color, facecolor=color)
             props = dict(boxstyle='round', facecolor='yellow', alpha=1)
             propsid = dict(boxstyle='round', facecolor='white', alpha=0.7)
             text = "?" if belief == InteractiveLandmarkBelief.QUESTIONMARK else "!"
@@ -230,7 +230,7 @@ class Plotter:
             adv = patches.Rectangle((xloc + 0.25, yloc + 0.25), 0.5, 0.5, linewidth=1, edgecolor='saddlebrown', facecolor='sienna')
         else:
 
-            adv = patches.RegularPolygon((xloc+0.5, yloc+0.5), 3, 0.35, linewidth=1, edgecolor='saddlebrown', facecolor='sienna')
+            adv = patches.RegularPolygon((xloc+0.5, yloc+0.5), 3, radius=0.35, linewidth=1, edgecolor='saddlebrown', facecolor='sienna')
             t2 = mpl.transforms.Affine2D().rotate_around(xloc+0.5, yloc+0.5, np.deg2rad(adv_direction.rotation)) + self._ax.transData
             adv.set_transform(t2)
         self._ax.add_patch(adv)
