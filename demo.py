@@ -1,5 +1,6 @@
 import logging
 import random
+import shutil
 
 import stormpy as sp
 import stormpy.pomdp
@@ -103,7 +104,8 @@ def demo(model_name, constants, gif):
     recorder.save(".", "demo", gif=gif)
 
 if __name__ == "__main__":
-    demo("evade", "N=6,RADIUS=2", gif=False)
+    # Rendering an MP4 requires FFmpeg, otherwise a GIF is rendered (which requires ImageMagick).
+    demo("evade", "N=6,RADIUS=2", gif=shutil.which("ffmpeg") is None)
 
 
 
