@@ -10,6 +10,11 @@ class Snapshot:
         return self
 
     @property
+    def index(self):
+        """The position of the snapshot in the trace."""
+        return self._index
+
+    @property
     def state(self):
         return self._trace._states[self._index]
 
