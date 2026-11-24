@@ -292,7 +292,7 @@ class Plotter:
         self._data[yloc,xloc] = data_colors["ADVBELIEF"]
 
     def _get_int_value(self, state, var):
-        return self._state_vals.get_integer_value(state,var)
+        return self._state_vals.get_int64_value(state,var)
 
     def _get_bool_value(self, state, var):
         return self._state_vals.get_boolean_value(state,var)

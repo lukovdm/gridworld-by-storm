@@ -61,7 +61,7 @@ def build_pomdp(program, formula):
     options.set_build_choice_labels()
     options.set_build_all_labels()
     logger.debug("Start building the POMDP")
-    return sp.build_sparse_model_with_options(program, options)
+    return sp.build_model(program, options=options)
 
 
 experiment_to_grid_model_names = {
@@ -86,16 +86,13 @@ def demo(model_name, constants, gif):
     constants = dict(item.split('=') for item in constants.split(","))
     input = model(**constants)
     prism_program = sp.parse_prism_program(input.path)
-    prop = sp.parse_properties_for_prism_program(input.properties[0], prism_program)[0]
-    prism_program, props = sp.preprocess_symbolic_input(prism_program, [prop], input.constants)
+    prop = sp.parse_property(input.properties[0], prism_program)
+    prism_program, props = sp.instantiate_constants(prism_program, input.constants, [prop])
     prop = props[0]
-    prism_program = prism_program.as_prism_program()
-    raw_formula = prop.raw_formula
 
     logger.info("Construct POMDP representation...")
-    model = build_pomdp(prism_program, raw_formula)
+    model = build_pomdp(prism_program, prop)
     if model.is_partially_observable:
-        # TODO: Once version stormpy 1.7.1 is released, we do not need the if here.
         model = sp.pomdp.make_canonic(model)
 
     renderer = plotter.Plotter(prism_program, input.annotations, model)

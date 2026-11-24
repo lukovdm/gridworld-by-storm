@@ -16,6 +16,6 @@ setup(
     description="This is a benchmark set visualiser for simulating grid worlds with Storm.",
     keywords="gridworld storm model-checking",
     install_requires=[
-        "stormpy>=1.7.0", "matplotlib", "tqdm"
+        "stormpy>=2.0.0", "matplotlib", "tqdm"
     ],
 )

@@ -11,7 +11,7 @@ For more advanced usage, we can refer to the [rlshield](https://github.com/sjung
 # Installation
 
 - Ensure FFMPeg is available on your system.
-- Ensure Stormpy 1.7.0 is available on your system.
+- Ensure Stormpy 2.0.0 (or newer) is available on your system, e.g. via `pip install stormpy`.
 - Optional: Support for creating GIFs depends on ImageMagick currently
 
 # Demo application
